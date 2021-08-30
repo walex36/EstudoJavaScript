@@ -6,15 +6,23 @@ class Cliente {
 
 class ContaCorrente {
     agencia;
-    saldo;
+    #saldo = 0;
 
     sacar(valor) {
-        if (this.saldo >= valor) {
-            this.saldo -= valor;
+        if (this.#saldo >= valor) {
+            this.#saldo -= valor;
         }else{
             console.log("Valor não disponivel!");
         }
     };
+
+    depositar(valor){
+        if (valor > 0) {
+            this.#saldo += valor;
+        }else{
+            console.log("Valor Invalido!");
+        }
+    }
 }
 
 
@@ -28,21 +36,20 @@ cliente2.nome = "Alice";
 cliente2.cpf = 11199988876;
 
 const contaCorrenteCarlos = new ContaCorrente();
-contaCorrenteCarlos.saldo = 0;
 contaCorrenteCarlos.agencia = 1001;
 
-console.log(contaCorrenteCarlos.saldo);
-contaCorrenteCarlos.saldo += 100;
-console.log(contaCorrenteCarlos.saldo);
-contaCorrenteCarlos.sacar(500);
-console.log(contaCorrenteCarlos.saldo);
+//console.log(contaCorrenteCarlos.#saldo);
+contaCorrenteCarlos.depositar(100);
+//console.log(contaCorrenteCarlos.#saldo);
+contaCorrenteCarlos.depositar(300);
+//console.log(contaCorrenteCarlos.#saldo);
+contaCorrenteCarlos.depositar(-10);
+
+//console.log(contaCorrenteCarlos.saldo);
 
 
-console.log(contaCorrenteCarlos.saldo);
 
 
 
-
-
-console.log(cliente2);
+console.log(cliente1);
 console.log(cliente2);
