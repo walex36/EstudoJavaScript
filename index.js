@@ -9,11 +9,14 @@ const contaCorrenteCarlos = new ContaCorrente();
 contaCorrenteCarlos.agencia = 1001;
 contaCorrenteCarlos.cliente = cliente1;
 
+const cliente2 = new Cliente();
+cliente2.nome = "Alice";
+cliente2.cpf = 11199988876;
+
 const conta2 = new ContaCorrente();
-conta2.cliente = new Cliente();
+conta2.cliente = cliente2;
 conta2.agencia = 1002;
-conta2.cliente.nome = "Alice";
-conta2.cliente.cpf = 11199988876;
+
 
 contaCorrenteCarlos.depositar(500);
 
