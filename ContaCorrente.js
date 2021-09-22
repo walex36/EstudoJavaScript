@@ -1,9 +1,13 @@
 import { Cliente } from "./Cliente.js";
 
 export class ContaCorrente {
+    static numeroDeContas = 0;
     agencia;
     _cliente;
-
+    _saldo = 0;
+    
+    
+    
     set cliente(novoValor){
         if (novoValor instanceof Cliente) {
             this._cliente = novoValor;
@@ -13,11 +17,15 @@ export class ContaCorrente {
     get cliente(){
         return this._cliente;
     }
-    
-    _saldo = 0;
 
     get saldo(){
         return this._saldo;
+    }
+
+    constructor(agencia, cliente){
+        this.agencia = agencia;
+        this.cliente = cliente;
+        ContaCorrente.numeroDeContas += 1;
     }
     
     sacar(valor) {
@@ -29,17 +37,21 @@ export class ContaCorrente {
         return valor;
     };
 
-    depositar(valor) {
+    depositar(valor, deposito) {
         if (valor <= 0) {
             console.log("Valor Invalido!");
             return;
         }
         this._saldo += valor;
+        console.log(this.cliente.nome + (deposito == true?" depositou R$ ":" recebeu tranferencia de R$") + valor);
+        console.log("Saldo total: "+ this._saldo);
         return valor;
     }
 
     transferir(valor, conta){
         const valorSacado = this.sacar(valor);
-        conta.depositar(valorSacado);
+        conta.depositar(valorSacado, false);
+        console.log(this.cliente.nome + " trasferil para "+ conta.cliente.nome+" R$ " + valor);
+        console.log("Saldo restante: "+ this._saldo);
     }
 }
